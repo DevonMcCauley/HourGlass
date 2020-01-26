@@ -1,0 +1,88 @@
+@font-face {
+    src: url('fonts/Quicksand-Light.ttf');
+}
+
+* {
+    -fx-font-family: "Quicksand Light";
+    -fx-font-smoothing-type: gray;
+}
+
+.LoginButton {
+    -fx-font-size: 20px;
+}
+
+.titleLabel {
+    -fx-font-size: 50px;
+}
+
+.secondaryLabel {
+    -fx-font-size: 40px;
+}
+
+.thirdLabel {
+    -fx-font-size: 35px;
+    -fx-text-fill: #040c0e;
+}
+
+.fourthLabel {
+    -fx-font-size: 20px;
+    -fx-text-fill: #040c0e;
+
+}
+
+.fifthLabel {
+    -fx-font-size: 18px;
+    -fx-text-fill: #040c0e;
+
+}
+
+.text-field {
+    -fx-font-family: "Quicksand Light";
+    -fx-font-smoothing-type: gray;
+    -fx-font-size: 18px;
+}
+
+.list-view {
+    -fx-font-size: 15px;
+
+}
+
+.list-view:disabled {
+    -fx-opacity: 1.0;
+}
+
+.tab {
+    -fx-font-size: 15px;
+}
+
+.general_button {
+    -fx-font-size: 20px;
+}
+
+.check-box {
+    -fx-font-size: 18px;
+}
+
+.check-box > .box {
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+}
+
+.check-box > .box > .mark {
+    -fx-background-image: url("/resources/icons/unchecked.png");
+    -fx-background-position: center;
+    -fx-background-repeat: stretch;
+    -fx-shape: none;
+    -fx-padding: 15px;
+}
+
+.check-box:selected > .box > .mark {
+    -fx-background-color: transparent;
+    -fx-background-image: url("/resources/icons/checked.png");
+    -fx-padding: 15px;
+}
+
+.check-box:disabled, .check-box:disabled > * {
+    -fx-opacity: 1.0;
+}
