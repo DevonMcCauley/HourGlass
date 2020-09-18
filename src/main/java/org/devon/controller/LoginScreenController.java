@@ -6,16 +6,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-<<<<<<< HEAD
 import org.devon.model.Employee;
 import org.devon.model.Screen_Type;
 import org.devon.utilities.DBConnection;
 import org.devon.utilities.ScreenManager;
-=======
-import org.devon.application.App;
-import org.devon.model.Employee;
-import org.devon.utilities.DBConnection;
->>>>>>> cc9f661fc72cc91d3798951eb3268bf2a8ac683b
 
 import java.net.URL;
 import java.sql.ResultSet;
@@ -27,12 +21,6 @@ public class LoginScreenController implements Initializable {
     public static ArrayList<Employee> employeeList = new ArrayList();
 
     @FXML
-<<<<<<< HEAD
-=======
-    private Button btnLogin;
-
-    @FXML
->>>>>>> cc9f661fc72cc91d3798951eb3268bf2a8ac683b
     private TextField txtUsername;
 
     @FXML
@@ -78,18 +66,9 @@ public class LoginScreenController implements Initializable {
                     employeeList.add(employee);
 
 
-<<<<<<< HEAD
                     if (userAttempt.equals(employee.getUsername().getValue()) && passAttempt.equals(employee.getPassword().getValue())) {
                         ScreenManager screenManager = new ScreenManager();
                         screenManager.screenChanger(Screen_Type.LANDING_PAGE);
-=======
-
-                    if (userAttempt.equals(employee.getUsername().getValue()) && passAttempt.equals(employee.getPassword().getValue())) {
-
-                        String screen = "/view/LandingPage.fxml";
-                        String title = "Landing Page";
-                        App.changeScene(screen, title);
->>>>>>> cc9f661fc72cc91d3798951eb3268bf2a8ac683b
                     } else if (!userAttempt.equals(employee.getUsername().getValue()) || !passAttempt.equals(employee.getPassword().getValue())) {
                         Alert alert = new Alert(Alert.AlertType.ERROR, "Username and/or password is/are not correct!", ButtonType.CLOSE);
                         alert.showAndWait();
