@@ -16,8 +16,9 @@ public class DBConnection {
     //<editor-fold desc="Database Connection Variables & Methods">
     // JDBC URL Parts
     private static final String PROTOCOL = "jdbc";
-    private static final String VENDOR_NAME = ":mysql://";
-    private static final String IP_ADDRESS = " "; //Enter your database IP address here
+    private static final String VENDOR_NAME = ""; //Enter database vendor name here
+
+    private static final String IP_ADDRESS = ""; //Enter your database IP address here
 
     // JDBC URL
     private static final String JDBC_URL = PROTOCOL + VENDOR_NAME + IP_ADDRESS;
@@ -27,8 +28,8 @@ public class DBConnection {
     private static Connection conn;
 
     // Database credentials
-    private static final String USERNAME = "root"; //Enter your database username
-    private static final String PASSWORD = "root"; //Enter your database password
+    private static final String USERNAME = ""; //Enter your database username
+    private static final String PASSWORD = ""; //Enter your database password
     //</editor-fold>
 
     // Starts the database connection

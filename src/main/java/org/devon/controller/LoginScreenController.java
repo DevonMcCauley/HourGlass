@@ -6,9 +6,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import org.devon.application.App;
 import org.devon.model.Employee;
+import org.devon.model.Screen_Type;
 import org.devon.utilities.DBConnection;
+import org.devon.utilities.ScreenManager;
 
 import java.net.URL;
 import java.sql.ResultSet;
@@ -18,9 +19,6 @@ import java.util.ResourceBundle;
 
 public class LoginScreenController implements Initializable {
     public static ArrayList<Employee> employeeList = new ArrayList();
-
-    @FXML
-    private Button btnLogin;
 
     @FXML
     private TextField txtUsername;
@@ -68,12 +66,9 @@ public class LoginScreenController implements Initializable {
                     employeeList.add(employee);
 
 
-
                     if (userAttempt.equals(employee.getUsername().getValue()) && passAttempt.equals(employee.getPassword().getValue())) {
-
-                        String screen = "/view/LandingPage.fxml";
-                        String title = "Landing Page";
-                        App.changeScene(screen, title);
+                        ScreenManager screenManager = new ScreenManager();
+                        screenManager.screenChanger(Screen_Type.LANDING_PAGE);
                     } else if (!userAttempt.equals(employee.getUsername().getValue()) || !passAttempt.equals(employee.getPassword().getValue())) {
                         Alert alert = new Alert(Alert.AlertType.ERROR, "Username and/or password is/are not correct!", ButtonType.CLOSE);
                         alert.showAndWait();

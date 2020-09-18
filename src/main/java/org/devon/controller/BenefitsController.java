@@ -8,15 +8,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import org.devon.application.App;
+import org.devon.model.About;
 import org.devon.model.Benefit;
 import org.devon.model.Employee;
+import org.devon.model.Screen_Type;
 import org.devon.utilities.DBConnection;
+import org.devon.utilities.ScreenManager;
 
-import java.io.InputStream;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -28,10 +28,9 @@ import static org.devon.utilities.DBConnection.submitQuery;
 
 
 public class BenefitsController implements Initializable {
-    String title;
-    String screen;
 
-    //List for combobox... allow user to select state for their beneficiary
+    ScreenManager screenManager = new ScreenManager();
+
     public static ArrayList<Benefit> benefitList = new ArrayList();
     public static ObservableList<String> electedBenefits = FXCollections.observableArrayList();
 
@@ -42,30 +41,12 @@ public class BenefitsController implements Initializable {
     private TextField txtEmployeeLastName;
     @FXML
     private ListView<String> listviewElectedBenefits;
-    @FXML
-    private TextField txtFirstName;
-    @FXML
-    private TextField txtLastName;
-    @FXML
-    private TextField txtBeneficiaryStreetAddress;
-    @FXML
-    private TextField txtBeneficiaryCity;
-    @FXML
-    private ChoiceBox<String> cmboxState;
-    @FXML
-    private TextField txtBeneficiaryZip;
-    @FXML
-    private TextField txtBeneficiaryRelation;
-    @FXML
-    private Button btnUpdate;
-    @FXML
-    private Button btnEditBeneficiary;
 
     @FXML
     private ImageView btnLanding;
 
     @FXML
-    private ImageView btnSandSheet;
+    private ImageView btnTimeSheet;
 
     @FXML
     private ImageView btnBenefits;
@@ -76,8 +57,7 @@ public class BenefitsController implements Initializable {
     @FXML
     private ImageView btnAbout;
 
-    @FXML
-    private ImageView imgDivider;
+
 
     @FXML
     private Button btnModifyBenefits;
@@ -200,112 +180,84 @@ public class BenefitsController implements Initializable {
 
 
     //<editor-fold desc="Navigation Methods">
+
     //Brings user to benefits page
     @FXML
     void BenefitsClicked(MouseEvent event) {
-        screen = "/view/Benefits.fxml";
-        title = "Benefits";
-        App.changeScene(screen, title);
+        screenManager.screenChanger(Screen_Type.BENEFIT);
     }
 
     @FXML
     void LandingClicked(MouseEvent event) {
-        screen = "/view/LandingPage.fxml";
-        title = "LandingPage";
-        App.changeScene(screen, title);
-    }
-
-    @FXML
-    void AboutClicked(MouseEvent event) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, "HourGlass was designed and developed by Devon McCauley. You are using version 1.0", ButtonType.OK);
-        alert.setTitle("Information");
-        alert.showAndWait();
+        screenManager.screenChanger(Screen_Type.LANDING_PAGE);
     }
 
     @FXML
     void TimeOffClicked(MouseEvent event) {
-        screen = "/view/TimeOff.fxml";
-        title = "Time Off";
-       // Main.changeScene(screen, title);
+        screenManager.screenChanger(Screen_Type.TIME_OFF);
     }
 
     @FXML
-    void SandSheetClicked(MouseEvent event) {
-        screen = "/view/SandSheet.fxml";
-        title = "SandSheet";
-       // Main.changeScene(screen, title);
+    void TimeSheetClicked(MouseEvent event) {
+        screenManager.screenChanger(Screen_Type.TIME_SHEET);
+    }
+
+    @FXML
+    void AboutClicked(MouseEvent event) {
+        About about = new About();
+        about.showAbout();
     }
     //</editor-fold>
 
     //<editor-fold desc="Styling Methods for the ImageView/Button Links">
     @FXML
     void changeAboutIcon(MouseEvent event) {
-        InputStream inStream = getClass().getResourceAsStream("/icons/about2.png");
-        Image about = new Image(inStream);
-        btnAbout.setImage(about);
+        btnAbout.setImage(screenManager.getActiveAboutIcon());
     }
 
     @FXML
     void changeBenefitsIcon(MouseEvent event) {
-        InputStream inStream = getClass().getResourceAsStream("/icons/benefits2.png");
-        Image benefits = new Image(inStream);
-        btnBenefits.setImage(benefits);
+        btnBenefits.setImage(screenManager.getActiveBenefitsIcon());
     }
 
     @FXML
     void changeLandingIcon(MouseEvent event) {
-        InputStream inStream = getClass().getResourceAsStream("/icons/landingpage2.png");
-        Image landingpage2 = new Image(inStream);
-        btnLanding.setImage(landingpage2);
+        btnLanding.setImage(screenManager.getActiveLandingIcon());
     }
 
     @FXML
-    void changeSandSheetIcon(MouseEvent event) {
-        InputStream inStream = getClass().getResourceAsStream("/icons/timesheet2.png");
-        Image sandsheet = new Image(inStream);
-        btnSandSheet.setImage(sandsheet);
+    void changeTimeSheetIcon(MouseEvent event) {
+        btnTimeSheet.setImage(screenManager.getActiveTimeSheetIcon());
     }
 
     @FXML
     void changeTimeOffIcon(MouseEvent event) {
-        InputStream inStream = getClass().getResourceAsStream("/icons/timeoff2.png");
-        Image timeoff = new Image(inStream);
-        btnTimeOff.setImage(timeoff);
+        btnTimeOff.setImage(screenManager.getActiveTimeOffIcon());
     }
 
     @FXML
     void returnLandingIcon(MouseEvent event) {
-        InputStream inStream = getClass().getResourceAsStream("/icons/landingpage.png");
-        Image landingpage = new Image(inStream);
-        btnLanding.setImage(landingpage);
+        btnLanding.setImage(screenManager.getInactiveLandingIcon());
     }
 
     @FXML
     void returnAboutIcon(MouseEvent event) {
-        InputStream inStream = getClass().getResourceAsStream("/icons/about.png");
-        Image about = new Image(inStream);
-        btnAbout.setImage(about);
+        btnAbout.setImage(screenManager.getInactiveAboutIcon());
     }
 
     @FXML
     void returnBenefitsIcon(MouseEvent event) {
-        InputStream inStream = getClass().getResourceAsStream("/icons/benefits.png");
-        Image benefits = new Image(inStream);
-        btnBenefits.setImage(benefits);
+        btnBenefits.setImage(screenManager.getInactiveBenefitsIcon());
     }
 
     @FXML
-    void returnSandSheetIcon(MouseEvent event) {
-        InputStream inStream = getClass().getResourceAsStream("/icons/timesheet.png");
-        Image sandsheet = new Image(inStream);
-        btnSandSheet.setImage(sandsheet);
+    void returnTimeSheetIcon(MouseEvent event) {
+        btnTimeSheet.setImage(screenManager.getInactiveTimeSheetIcon());
     }
 
     @FXML
     void returnTimeOffIcon(MouseEvent event) {
-        InputStream inStream = getClass().getResourceAsStream("/icons/timeoff.png");
-        Image timeoff = new Image(inStream);
-        btnTimeOff.setImage(timeoff);
+        btnTimeOff.setImage(screenManager.getInactiveTimeOffIcon());
     }
     //</editor-fold>
 

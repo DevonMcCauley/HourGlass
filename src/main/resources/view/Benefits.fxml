@@ -1,21 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.effect.InnerShadow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="883.0" style="-fx-background-color: #132226;" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.devon.controller.BenefitsController">
    <children>
       <TabPane layoutX="120.0" layoutY="136.0" prefHeight="417.0" prefWidth="710.0" tabClosingPolicy="UNAVAILABLE">
@@ -107,17 +97,17 @@
                <children>
                   <ImageView fx:id="btnLanding" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#LandingClicked" onMouseEntered="#changeLandingIcon" onMouseExited="#returnLandingIcon" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/landingpage.png" />
+                        <Image url="@../icons/navigation/landingpageInactive.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="btnSandSheet" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#SandSheetClicked" onMouseEntered="#changeSandSheetIcon" onMouseExited="#returnSandSheetIcon" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="btnTimeSheet" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#TimeSheetClicked" onMouseEntered="#changeTimeSheetIcon" onMouseExited="#returnTimeSheetIcon" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/timesheet.png" />
+                        <Image url="@../icons/navigation/timesheetInactive.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="btnBenefits" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#BenefitsClicked" onMouseEntered="#changeBenefitsIcon" onMouseExited="#returnBenefitsIcon" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/benefits.png" />
+                        <Image url="@../icons/navigation/benefitsInactive.png" />
                      </image>
                      <effect>
                         <Bloom />
@@ -125,12 +115,12 @@
                   </ImageView>
                   <ImageView fx:id="btnTimeOff" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#TimeOffClicked" onMouseEntered="#changeTimeOffIcon" onMouseExited="#returnTimeOffIcon" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/timeoff.png" />
+                        <Image url="@../icons/navigation/timeoffInactive.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="btnAbout" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#AboutClicked" onMouseEntered="#changeAboutIcon" onMouseExited="#returnAboutIcon" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/about.png" />
+                        <Image url="@../icons/navigation/aboutInactive.png" />
                      </image>
                   </ImageView>
                </children>

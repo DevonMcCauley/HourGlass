@@ -5,14 +5,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import org.devon.application.App;
+import org.devon.model.About;
 import org.devon.model.Employee;
+import org.devon.model.Screen_Type;
 import org.devon.utilities.DBConnection;
+import org.devon.utilities.ScreenManager;
 
-import java.io.InputStream;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,7 +23,7 @@ import static org.devon.controller.LoginScreenController.employeeList;
 import static org.devon.utilities.DBConnection.submitQuery;
 
 
-public class SandSheetController implements Initializable {
+public class TimeSheetController implements Initializable {
     //<editor-fold desc="FXML Declarations">
     @FXML
     private Button btnTotalHours;
@@ -56,14 +56,12 @@ public class SandSheetController implements Initializable {
 
     @FXML
     private Button btnSubmit;
-    @FXML
-    private ImageView imgDivider;
 
     @FXML
     private ImageView btnLanding;
 
     @FXML
-    private ImageView btnSandSheet;
+    private ImageView btnTimeSheet;
 
     @FXML
     private ImageView btnBenefits;
@@ -75,8 +73,9 @@ public class SandSheetController implements Initializable {
     private ImageView btnAbout;
     //</editor-fold>
 
-    String screen;
-    String title;
+
+
+    ScreenManager screenManager = new ScreenManager();
 
     //Calculates the total hours for this week
     @FXML
@@ -95,7 +94,7 @@ public class SandSheetController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "You left an empty field!", ButtonType.OK);
                 alert.showAndWait();
                 btnSubmit.setDisable(true);
-            } else if (!monday.isEmpty() || !tuesday.isEmpty() || !wednesday.isEmpty() || !thursday.isEmpty() || !friday.isEmpty() || !saturday.isEmpty() || !sunday.isEmpty()) {
+            } else {
                 if (!checkNumbers(monday) && !checkNumbers(tuesday) && !checkNumbers(wednesday) && !checkNumbers(thursday) && !checkNumbers(friday) && !checkNumbers(saturday) && !checkNumbers(sunday)) {
                     Double monHours = Double.parseDouble(monday);
                     Double tuesHours = Double.parseDouble(tuesday);
@@ -125,12 +124,11 @@ public class SandSheetController implements Initializable {
     void submit(ActionEvent event) {
 
         Employee employee = employeeList.get(0);
-        String emp = employee.getEmployeeId().getValue();
         String timesheetID = employee.getTimesheetID().getValue();
         double payRate = Double.parseDouble(employee.getPayrate().getValue());
 
-        Double hours = Double.parseDouble(lblTotal.getText());
-        Double grossPay = hours * payRate;
+        double hours = Double.parseDouble(lblTotal.getText());
+        double grossPay = hours * payRate;
 
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "By submitting your timesheet, you understand and affirm that you have carefully reviewed the accuracy of the form.", ButtonType.YES, ButtonType.CANCEL);
@@ -139,7 +137,7 @@ public class SandSheetController implements Initializable {
         Optional<ButtonType> alertResult = alert.showAndWait();
 
         if (alertResult.get() == ButtonType.YES) {
-            lblGrossPay.setText("$" + grossPay.toString());
+            lblGrossPay.setText("$" + Double.toString(grossPay));
             String sqlStatement = "UPDATE timesheet SET hours = "+ hours + ", date_submitted = curdate(), gross_pay = "+ grossPay+" WHERE timesheet_id = "+timesheetID +" ;";
             submitQuery(sqlStatement);
             btnSubmit.setDisable(true);
@@ -160,102 +158,77 @@ public class SandSheetController implements Initializable {
     //<editor-fold desc="Navigation Methods">
     @FXML
     void BenefitsClicked(MouseEvent event) {
-        screen = "/view/Benefits.fxml";
-        title = "Benefits";
-        App.changeScene(screen, title);
+
+        screenManager.screenChanger(Screen_Type.BENEFIT);
     }
 
     @FXML
     void LandingClicked(MouseEvent event) {
-        screen = "/view/LandingPage.fxml";
-        title = "LandingPage";
-        App.changeScene(screen, title);
+
+        screenManager.screenChanger(Screen_Type.LANDING_PAGE);
     }
 
     @FXML
     void AboutClicked(MouseEvent event) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, "HourGlass was designed and developed by Devon McCauley. You are using version 1.0", ButtonType.OK);
-        alert.setTitle("Information");
-        alert.showAndWait();
+        About about = new About();
+        about.showAbout();
     }
 
     @FXML
     void TimeOffClicked(MouseEvent event) {
-        screen = "/view/TimeOff.fxml";
-        title = "Time Off";
-        App.changeScene(screen, title);
+        screenManager.screenChanger(Screen_Type.TIME_OFF);
     }
     //</editor-fold>
 
     //<editor-fold desc="Styling Methods for the ImageView/Button Links">
     @FXML
     void changeAboutIcon(MouseEvent event) {
-        InputStream inStream = getClass().getResourceAsStream("/icons/about2.png");
-        Image about = new Image(inStream);
-        btnAbout.setImage(about);
+        btnAbout.setImage(screenManager.getActiveAboutIcon());
     }
 
     @FXML
     void changeBenefitsIcon(MouseEvent event) {
-        InputStream inStream = getClass().getResourceAsStream("/icons/benefits2.png");
-        Image benefits = new Image(inStream);
-        btnBenefits.setImage(benefits);
+        btnBenefits.setImage(screenManager.getActiveBenefitsIcon());
     }
 
     @FXML
     void changeLandingIcon(MouseEvent event) {
-        InputStream inStream = getClass().getResourceAsStream("/icons/landingpage2.png");
-        Image landingpage2 = new Image(inStream);
-        btnLanding.setImage(landingpage2);
+        btnLanding.setImage(screenManager.getActiveLandingIcon());
     }
 
     @FXML
-    void changeSandSheetIcon(MouseEvent event) {
-        InputStream inStream = getClass().getResourceAsStream("/icons/timesheet2.png");
-        Image sandsheet = new Image(inStream);
-        btnSandSheet.setImage(sandsheet);
+    void changeTimeSheetIcon(MouseEvent event) {
+        btnTimeSheet.setImage(screenManager.getActiveTimeSheetIcon());
     }
 
     @FXML
     void changeTimeOffIcon(MouseEvent event) {
-        InputStream inStream = getClass().getResourceAsStream("/icons/timeoff2.png");
-        Image timeoff = new Image(inStream);
-        btnTimeOff.setImage(timeoff);
+        btnTimeOff.setImage(screenManager.getActiveTimeOffIcon());
     }
 
     @FXML
     void returnLandingIcon(MouseEvent event) {
-        InputStream inStream = getClass().getResourceAsStream("/icons/landingpage.png");
-        Image landingpage = new Image(inStream);
-        btnLanding.setImage(landingpage);
+        btnLanding.setImage(screenManager.getInactiveLandingIcon());
     }
 
     @FXML
     void returnAboutIcon(MouseEvent event) {
-        InputStream inStream = getClass().getResourceAsStream("/icons/about.png");
-        Image about = new Image(inStream);
-        btnAbout.setImage(about);
+        btnAbout.setImage(screenManager.getInactiveAboutIcon());
     }
 
     @FXML
     void returnBenefitsIcon(MouseEvent event) {
-        InputStream inStream = getClass().getResourceAsStream("/icons/benefits.png");
-        Image benefits = new Image(inStream);
-        btnBenefits.setImage(benefits);
+        btnBenefits.setImage(screenManager.getInactiveBenefitsIcon());
     }
 
     @FXML
-    void returnSandSheetIcon(MouseEvent event) {
-        InputStream inStream = getClass().getResourceAsStream("/icons/timesheet.png");
-        Image sandsheet = new Image(inStream);
-        btnSandSheet.setImage(sandsheet);
+    void returnTimeSheetIcon(MouseEvent event) {
+        btnTimeSheet.setImage(screenManager.getInactiveTimeSheetIcon());
     }
 
     @FXML
     void returnTimeOffIcon(MouseEvent event) {
-        InputStream inStream = getClass().getResourceAsStream("/icons/timeoff.png");
-        Image timeoff = new Image(inStream);
-        btnTimeOff.setImage(timeoff);
+        btnTimeOff.setImage(screenManager.getInactiveTimeOffIcon());
     }
     //</editor-fold>
 

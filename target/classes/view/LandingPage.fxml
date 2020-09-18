@@ -86,30 +86,30 @@
                      <children>
                         <ImageView fx:id="btnLanding" fitHeight="60.0" fitWidth="60.0" onMouseEntered="#changeLandingIcon" onMouseExited="#returnLandingIcon" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../icons/landingpage.png" />
+                              <Image url="@../icons/navigation/landingpageInactive.png" />
                            </image>
                            <effect>
                               <Bloom />
                            </effect>
                         </ImageView>
-                        <ImageView fx:id="btnSandSheet" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#SandSheetClicked" onMouseEntered="#changeSandSheetIcon" onMouseExited="#returnSandSheetIcon" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="btnTimeSheet" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#TimeSheetClicked" onMouseEntered="#changeTimeSheetIcon" onMouseExited="#returnTimeSheetIcon" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../icons/timesheet.png" />
+                              <Image url="@../icons/navigation/timesheetInactive.png" />
                            </image>
                         </ImageView>
                         <ImageView fx:id="btnBenefits" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#BenefitsClicked" onMouseEntered="#changeBenefitsIcon" onMouseExited="#returnBenefitsIcon" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../icons/benefits.png" />
+                              <Image url="@../icons/navigation/benefitsInactive.png" />
                            </image>
                         </ImageView>
                         <ImageView fx:id="btnTimeOff" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#TimeOffClicked" onMouseEntered="#changeTimeOffIcon" onMouseExited="#returnTimeOffIcon" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../icons/timeoff.png" />
+                              <Image url="@../icons/navigation/timeoffInactive.png" />
                            </image>
                         </ImageView>
                         <ImageView fx:id="btnAbout" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#AboutClicked" onMouseEntered="#changeAboutIcon" onMouseExited="#returnAboutIcon" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../icons/about.png" />
+                              <Image url="@../icons/navigation/aboutInactive.png" />
                            </image>
                         </ImageView>
                      </children>

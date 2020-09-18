@@ -9,10 +9,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import org.devon.application.App;
 import org.devon.model.Employee;
+import org.devon.model.Screen_Type;
 import org.devon.model.TimeRequest;
 import org.devon.utilities.DBConnection;
+import org.devon.utilities.ScreenManager;
 
 import java.net.URL;
 import java.sql.ResultSet;
@@ -22,10 +23,9 @@ import static org.devon.controller.LoginScreenController.employeeList;
 import static org.devon.utilities.DBConnection.submitQuery;
 
 
-public class ViewTimeOffController implements Initializable {
+public class TimeOffRequestController implements Initializable {
 
-    String screen;
-    String title;
+    ScreenManager screenManager = new ScreenManager();
 
     @FXML
     private TableView<TimeRequest> tblTimes;
@@ -52,9 +52,7 @@ public class ViewTimeOffController implements Initializable {
 
     @FXML
     void Back(ActionEvent event) {
-        screen = "/view/TimeOff.FXML";
-        title = "Request Time Off";
-        App.changeScene(screen, title);
+        screenManager.screenChanger(Screen_Type.TIME_OFF);
     }
 
     @FXML
