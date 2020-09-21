@@ -78,6 +78,7 @@ public class TimeSheetController implements Initializable {
     ScreenManager screenManager = new ScreenManager();
 
     //Calculates the total hours for this week
+
     @FXML
     void TotalHours(ActionEvent event) {
         try {

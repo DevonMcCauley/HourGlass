@@ -9,6 +9,13 @@ import org.devon.utilities.DBConnection;
 
 import java.io.IOException;
 
+/**
+ * App is the entry point to the HourGlass application.
+ * It sets the first screen that is shown to the user.
+ * It extends the Application class from JavaFX.
+ *
+ * @author Devon
+ */
 
 public class App extends Application {
 
@@ -19,6 +26,12 @@ public class App extends Application {
         return stage;
     }
 
+
+    /**
+     * Used to initialize the UI screen.
+     *
+     * @param stage
+     */
     @Override
     public void start(Stage stage) {
         App.stage = stage;
@@ -36,6 +49,11 @@ public class App extends Application {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Starts the HourGlass application.
+     * Starts and closes the database.
+     */
 
     public static void main(String[] args) {
         DBConnection.startConnection();

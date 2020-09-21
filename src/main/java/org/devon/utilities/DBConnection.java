@@ -16,7 +16,7 @@ public class DBConnection {
     //<editor-fold desc="Database Connection Variables & Methods">
     // JDBC URL Parts
     private static final String PROTOCOL = "jdbc";
-    private static final String VENDOR_NAME = ""; //Enter database vendor name here
+    private static final String VENDOR_NAME = ":mysql://"; //Enter database vendor name here
 
     private static final String IP_ADDRESS = ""; //Enter your database IP address here
 

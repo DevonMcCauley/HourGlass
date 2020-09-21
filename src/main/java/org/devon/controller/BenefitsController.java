@@ -26,12 +26,21 @@ import java.util.ResourceBundle;
 import static org.devon.controller.LoginScreenController.employeeList;
 import static org.devon.utilities.DBConnection.submitQuery;
 
+/**
+ * Controller for the Benefits screen.
+ *
+ *
+ * @author Devon McCauley
+ */
 
 public class BenefitsController implements Initializable {
 
     ScreenManager screenManager = new ScreenManager();
 
+    //ArrayList of benefits available to the employee
     public static ArrayList<Benefit> benefitList = new ArrayList();
+
+    //ArrayList that holds the benefits selected by the employee
     public static ObservableList<String> electedBenefits = FXCollections.observableArrayList();
 
     //<editor-fold desc="FXML Declarations">
@@ -90,6 +99,12 @@ public class BenefitsController implements Initializable {
     //</editor-fold>
 
     //<editor-fold desc="Benefits Methods">
+
+    /**
+     * Shows alert to user to confirm that they want to edit the benefits that they selected.
+     * If confirmed, the Save Benefits button and checkboxes become enabled.
+     * @param event
+     */
     @FXML
     void ModifyBenefits(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to edit your benefit options?", ButtonType.YES, ButtonType.CANCEL);
@@ -104,6 +119,11 @@ public class BenefitsController implements Initializable {
         }
     }
 
+    /**
+     * When Save Benefits button is clicked, checks which options are selected and updates
+     * employee benefits in the database to reflect changes
+     * @param event
+     */
     @FXML
     void SaveBenefits(ActionEvent event) {
         Employee employee = employeeList.get(0);
@@ -155,6 +175,10 @@ public class BenefitsController implements Initializable {
     }
 
 
+    /**
+     * Disables the benefit fields: medical, dental, vision, life, union member, retirement and pet insurance
+     * Prevents user modification
+     */
     private void lockBenefitFields() {
         boxMedical.setDisable(true);
         boxDental.setDisable(true);
@@ -164,7 +188,10 @@ public class BenefitsController implements Initializable {
         boxRetirement.setDisable(true);
         boxPet.setDisable(true);
     }
-
+    /**
+     * Enables the benefit fields: medical, dental, vision, life, union member, retirement and pet insurance
+     * Allows user modification
+     */
     private void unlockBenefitFields() {
         boxMedical.setDisable(false);
         boxDental.setDisable(false);
@@ -181,27 +208,45 @@ public class BenefitsController implements Initializable {
 
     //<editor-fold desc="Navigation Methods">
 
-    //Brings user to benefits page
+    //Brings user respective page
+
+    /**
+     * Calls the screenChanger method in the ScreenManager class to change to the Benefits screen
+     */
     @FXML
     void BenefitsClicked(MouseEvent event) {
         screenManager.screenChanger(Screen_Type.BENEFIT);
     }
 
+    /**
+     * Calls the screenChanger method in the ScreenManager class to change to the Landing Page (home) screen
+     */
     @FXML
     void LandingClicked(MouseEvent event) {
         screenManager.screenChanger(Screen_Type.LANDING_PAGE);
     }
 
+    /**
+     * Calls the screenChanger method in the ScreenManager class to change to the TimeOff screen
+     */
     @FXML
     void TimeOffClicked(MouseEvent event) {
         screenManager.screenChanger(Screen_Type.TIME_OFF);
     }
 
+    /**
+     * Calls the screenChanger method in the ScreenManager class to change to the TimeSheet screen
+     */
     @FXML
     void TimeSheetClicked(MouseEvent event) {
         screenManager.screenChanger(Screen_Type.TIME_SHEET);
     }
 
+    /**
+     * Shows the user information about HourGlass
+     * @see ScreenManager
+     * @param event
+     */
     @FXML
     void AboutClicked(MouseEvent event) {
         About about = new About();
@@ -261,6 +306,12 @@ public class BenefitsController implements Initializable {
     }
     //</editor-fold>
 
+    /**
+     * Used to initalize the controller and screen for the benefits page
+     * by obtaining employee data to populate the appropriate fields from the database
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         listviewElectedBenefits.setDisable(true);
