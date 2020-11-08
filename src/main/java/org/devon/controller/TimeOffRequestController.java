@@ -14,6 +14,7 @@ import org.devon.model.Screen_Type;
 import org.devon.model.TimeRequest;
 import org.devon.utilities.DBConnection;
 import org.devon.utilities.ScreenManager;
+import org.devon.utilities.SoundManager;
 
 import java.net.URL;
 import java.sql.ResultSet;
@@ -61,9 +62,11 @@ public class TimeOffRequestController implements Initializable {
         String sqlStatement;
 
         TimeRequest timeRequest = tblTimes.getSelectionModel().getSelectedItem();
+        SoundManager soundManager = new SoundManager();
 
         //Ensure that user selects an appointment record
         if (timeRequest == null) {
+            soundManager.playErrorSound();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Error");

@@ -10,6 +10,7 @@ import org.devon.model.Employee;
 import org.devon.model.Screen_Type;
 import org.devon.utilities.DBConnection;
 import org.devon.utilities.ScreenManager;
+import org.devon.utilities.SoundManager;
 
 import java.net.URL;
 import java.sql.ResultSet;
@@ -29,10 +30,15 @@ public class LoginScreenController implements Initializable {
     @FXML
     void login(ActionEvent event) {
 
+        SoundManager soundManager = new SoundManager();
+
         String userAttempt = txtUsername.getText();
         String passAttempt = txtPassword.getText();
 
         if (userAttempt.isEmpty() || passAttempt.isEmpty()) {
+
+            soundManager.playErrorSound();
+
             Alert alert = new Alert(Alert.AlertType.ERROR, "You left a blank field", ButtonType.CLOSE);
             alert.showAndWait();
         } else {
@@ -67,13 +73,16 @@ public class LoginScreenController implements Initializable {
 
 
                     if (userAttempt.equals(employee.getUsername().getValue()) && passAttempt.equals(employee.getPassword().getValue())) {
+                        soundManager.playLoginSound();
                         ScreenManager screenManager = new ScreenManager();
                         screenManager.screenChanger(Screen_Type.LANDING_PAGE);
                     } else if (!userAttempt.equals(employee.getUsername().getValue()) || !passAttempt.equals(employee.getPassword().getValue())) {
-                        Alert alert = new Alert(Alert.AlertType.ERROR, "Username and/or password is/are not correct!", ButtonType.CLOSE);
+                        soundManager.playErrorSound();
+                        Alert alert = new Alert(Alert.AlertType.ERROR, "Username and(or) password is(are) not correct!", ButtonType.CLOSE);
                         alert.showAndWait();
                     }
                 } else if (!result.next()) {
+                    soundManager.playErrorSound();
                     Alert alert = new Alert(Alert.AlertType.ERROR, "User not found!", ButtonType.CLOSE);
                     alert.showAndWait();
                 }

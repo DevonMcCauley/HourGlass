@@ -14,6 +14,7 @@ import org.devon.model.Employee;
 import org.devon.model.Screen_Type;
 import org.devon.model.TimeRequest;
 import org.devon.utilities.ScreenManager;
+import org.devon.utilities.SoundManager;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -77,6 +78,7 @@ public class TimeOffController implements Initializable {
     @FXML
     void RequestTime(ActionEvent event) {
         try {
+            SoundManager soundManager = new SoundManager();
             Employee employee = employeeList.get(0);
             String employeeID = employee.getEmployeeId().getValue();
             LocalDate startDate = calStartDate.getValue();
@@ -84,6 +86,7 @@ public class TimeOffController implements Initializable {
             LocalDate dateRequested = LocalDate.now();
             String reason = txtReason.getText();
             if (startDate == null || endDate == null) {
+                soundManager.playErrorSound();
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Dates cannot be null", ButtonType.OK);
                 alert.setTitle("Null Dates");
                 alert.setHeaderText("Null Dates");
