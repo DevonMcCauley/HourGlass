@@ -66,21 +66,6 @@ public class DBConnection {
         }
     }
 
-    public static ResultSet selectEmployeeQuery() {
-        Statement stmt;
-        ResultSet result = null;
-
-        try {
-            stmt = conn.createStatement();
-            result = stmt.executeQuery("SELECT employee_id, first_name, last_name, username, password, department, role, payrate, overtime_exempt "
-                    + "FROM employee "
-                    + "ORDER BY last_name");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return result;
-    }
-
     public static ResultSet findUser(String userAttempt) {
         Statement stmt;
         ResultSet result = null;
@@ -95,19 +80,6 @@ public class DBConnection {
         return result;
     }
 
-    public static ResultSet checkPay(String timesheetID) {
-        Statement stmt;
-        ResultSet result = null;
-
-        try {
-            stmt = conn.createStatement();
-            result = stmt.executeQuery("SELECT * FROM timesheet WHERE timesheet_id = '" + timesheetID + "';");
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return result;
-    }
 
     public static ResultSet checkTimeSheet(String timesheetID) {
         Statement stmt;
@@ -121,7 +93,6 @@ public class DBConnection {
         }
         return result;
     }
-
 
     public static ResultSet findBenefits(String benefitID) {
         Statement stmt;

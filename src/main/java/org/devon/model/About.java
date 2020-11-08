@@ -11,7 +11,7 @@ import org.devon.utilities.SoundManager;
  */
 public class About {
 
-    double version = 1.6;
+    String version = "1.6.1";
 
 
     /**
