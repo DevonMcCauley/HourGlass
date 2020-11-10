@@ -14,13 +14,8 @@ public class DBConnection {
     public static int appointmentReminderCounter;
 
     //<editor-fold desc="Database Connection Variables & Methods">
-    // JDBC URL Parts
-    private static final String PROTOCOL = System.getenv("PROTOCOL"); //Enter database protocol here
-    private static final String VENDOR_NAME = System.getenv("VENDOR"); //Enter database vendor name here
-    private static final String IP_ADDRESS = System.getenv("IP_ADDRESS"); //Enter your database IP address here
-
     // JDBC URL
-    private static final String JDBC_URL = PROTOCOL + VENDOR_NAME + IP_ADDRESS;
+    private static final String JDBC_URL = System.getenv("JDBC_URL");
 
     //private static Connection conn;
     private static Connection conn;
