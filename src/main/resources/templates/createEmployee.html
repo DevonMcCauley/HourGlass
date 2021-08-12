@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+
+
+<form method="post" th:action="@{/addEmployee}" th:object="${employee}">
+
+    <label class="form-label" for="firstname">First Name</label>
+    <input class="form-control" id="firstname" required th:field="*{firstname}" type="text">
+
+    <label class="form-label" for="lastname">Last Name</label>
+    <input class="form-control" id="lastname" required th:field="*{lastname}" type="text">
+
+
+    <label class="form-label" for="username">Username</label>
+    <input class="form-control" id="username" required th:field="*{username}" type="text">
+
+    <label class="form-label" for="password">Password</label>
+    <input class="form-control" id="password" required th:field="*{password}" type="password">
+
+    <button th:action="@{/addEmployee}" type="submit" value="Submit">Create</button>
+
+</form>
+
+
+</body>
+</html>
