@@ -1,4 +1,4 @@
-package com.api.hourglassapi;
+package com.devon.hourglassapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

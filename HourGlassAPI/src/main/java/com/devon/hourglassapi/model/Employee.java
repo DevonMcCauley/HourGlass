@@ -12,7 +12,7 @@ public class Employee {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private Long employeeId;
     private String firstName;
     private String lastName;
     private String userName;
@@ -21,21 +21,20 @@ public class Employee {
 
     public Employee() {}
 
-     public Employee(Long id, String firstName, String lastName, String userName, String password) {
-        this.id = id;
+    public Employee(Long employeeId, String firstName, String lastName, String userName, String password) {
+        this.employeeId = employeeId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
         this.password = password;
     }
 
-
-    public Long getId() {
-        return id;
+    public Long getEmployeeId() {
+        return employeeId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
     }
 
     public String getFirstName() {
@@ -75,18 +74,19 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return Objects.equals(id, employee.id) && Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName) && Objects.equals(userName, employee.userName) && Objects.equals(password, employee.password);
+        return Objects.equals(employeeId, employee.employeeId) && Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName) && Objects.equals(userName, employee.userName) && Objects.equals(password, employee.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, userName, password);
+        return Objects.hash(employeeId, firstName, lastName, userName, password);
     }
+
 
     @Override
     public String toString() {
         return "Employee{" +
-                "id=" + id +
+                "employeeId=" + employeeId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", userName='" + userName + '\'' +
