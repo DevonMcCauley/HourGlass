@@ -48,7 +48,7 @@ public class EmployeeController {
         Employee employee =
                 employeeRepository
                         .findById(employeeId)
-                        .orElseThrow(() -> new ResourceNotFoundException("Employee not found on :: " + employeeId));
+                        .orElseThrow(() -> new ResourceNotFoundException("Employee not found on : " + employeeId));
 
         employee.setFirstName(employeeDetails.getFirstName());
         employee.setLastName(employeeDetails.getLastName());
@@ -63,7 +63,7 @@ public class EmployeeController {
         Employee employee =
                 employeeRepository
                         .findById(employeeId)
-                        .orElseThrow(() -> new ResourceNotFoundException("Employee not found on :: " + employeeId));
+                        .orElseThrow(() -> new ResourceNotFoundException("Employee not found on : " + employeeId));
         employeeRepository.delete(employee);
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);

@@ -1,0 +1,29 @@
+:root {
+    --gunmetal: #153243;
+    --indigoDye: #284B63;
+    --ashGray: #B4B8AB;
+    --ivory: #F4F9E9;
+    --babyPowder: #EEF0EB;
+}
+
+.sidenav {
+    position: absolute;
+    width: 4em;
+    height: 100vh;
+    background-color: var(--ashGray);
+}
+
+
+.content {
+    height: 100vh;
+    border: black;
+    margin-left: 4em;
+    padding-left: 5px;
+    background-color: var(--gunmetal);
+}
+
+
+body {
+    color: var(--ivory);
+    background-color: var(--indigoDye);
+}
