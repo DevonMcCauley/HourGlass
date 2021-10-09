@@ -5,6 +5,10 @@
     --ivory: #F4F9E9;
     --babyPowder: #EEF0EB;
 }
+* {
+    font-family: 'Ubuntu', sans-serif;
+}
+
 
 .sidenav {
     position: absolute;
@@ -27,3 +31,4 @@ body {
     color: var(--ivory);
     background-color: var(--indigoDye);
 }
+
