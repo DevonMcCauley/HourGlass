@@ -1,53 +1,65 @@
 <!doctype html>
-<html lang="en" xmlns:th=″http://www.thymeleaf.org″>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="" name="description">
     <title>HourGlass</title>
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sidebars/">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://getbootstrap.com/docs/5.1/examples/sidebars/" rel="canonical">
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css"
+          integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+
+    <!--    <link href="/static/css/styles.css" rel="stylesheet">-->
+    <link href="/css/styles.css" rel="stylesheet">
 </head>
 
 <body>
-    <div  class="d-flex flex-column sidenav">
-        <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
-            <li>
-                <a href="#" class="d-block p-3 link-dark text-decoration-none" title="HourGlass" data-bs-toggle="tooltip" data-bs-placement="center">
-                    <i class="bi bi-hourglass"></i>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link active py-3 border-bottom" aria-current="page" title="Home" data-bs-toggle="tooltip" data-bs-placement="center">
-                    <i class="bi bi-house"></i>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link py-3 border-bottom" title="Time Card" data-bs-toggle="tooltip" data-bs-placement="center">
-                    <i class="bi bi-clock"></i>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link py-3 border-bottom" title="Calendar" data-bs-toggle="tooltip" data-bs-placement="center">
-                    <i class="bi bi-calendar"></i>
-                </a>
-            </li>
-        </ul>
-    </div>
+<div class="d-flex flex-column sidenav">
+    <ul class="nav flex-column mb-auto text-center">
+        <li>
+            <a class="d-block p-3 border-bottom navTop" data-bs-placement="center" data-bs-toggle="tooltip" href="#"
+               title="HourGlass">
+                <i class="bi bi-hourglass mainIcon"></i>
+            </a>
+        </li>
+        <li class="nav-item activeTab">
+            <a aria-current="page" class="nav-link py-3  border-bottom" data-bs-placement="center"
+               data-bs-toggle="tooltip"
+               href="#" title="Home">
+                <i class="bi bi-house icons"></i>
+            </a>
+        </li>
+        <li>
+            <a class="nav-link py-3 border-bottom" data-bs-placement="center" data-bs-toggle="tooltip" href="#"
+               title="Time Card">
+                <i class="bi bi-clock icons"></i>
+            </a>
+        </li>
+        <li>
+            <a class="nav-link py-3 border-bottom" data-bs-placement="center" data-bs-toggle="tooltip" href="#"
+               title="Calendar">
+                <i class="bi bi-calendar3 icons"></i>
+            </a>
+        </li>
+    </ul>
+</div>
 
-<main class="content">
+<main class="container-fluid content">
 
-    <div>
-        <h1>HourGlass</h1>
-    </div>
+    <h1>Hello User,</h1>
+    <h2>Welcome to HourGlass</h2>
+
 
 </main>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

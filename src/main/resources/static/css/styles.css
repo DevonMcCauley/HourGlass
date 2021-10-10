@@ -1,0 +1,107 @@
+:root {
+    --raisinBlack: #24282D;
+    --charcoal: #424B54;
+    --grullo: #C5BAAF;
+    --paleSilver: #C5BAAF;
+    --desertSand: #D7BEA8;
+    --cultured: #F6F7F8;
+    --alabaster: #D8E2DC;
+    --forestGreenCrayola: #63A375;
+    --roseDust: #AA6373;
+    --mauve: #DEC1FF;
+}
+
+* {
+    font-family: 'Ubuntu', sans-serif;
+    color: var(--alabaster);;
+}
+
+.sidenav {
+    position: absolute;
+    width: 4em;
+    height: 100%;
+    background-color: var(--charcoal);
+}
+
+.content {
+    height: 100vh;
+    width: 100%;
+    border: black;
+    background-color: var(--raisinBlack);
+    text-align: center;
+    padding-top: 10px;
+}
+
+.navTop {
+    cursor: default;
+}
+
+body {
+    background-color: var(--raisinBlack);
+}
+
+.mainIcon {
+    color: var(--roseDust);
+    font-size: 2em;
+    cursor: default;
+}
+
+.icons {
+    color: var(--roseDust);
+    font-size: 2em;
+}
+
+.icons:hover {
+    color: var(--mauve);
+}
+
+.activeTab {
+    background-color: var(--raisinBlack);
+}
+
+.loginBox {
+
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 175px;
+    margin-top: 100px;
+    margin-left: 650px;
+    background-color: var(--charcoal);
+    width: 35em;
+    height: 500px;
+    border: 2px var(--roseDust) solid;
+    border-radius: 30px;
+}
+
+.loginButton {
+    animation: 1s;
+    animation-name: loginExit;
+    margin-left: 20px;
+    background-color: var(--roseDust);
+    color: var(--alabaster);
+}
+
+.loginButton:hover {
+    color: var(--alabaster);
+
+    animation: 1s;
+    animation-name: loginHover;
+}
+
+
+@keyframes loginHover {
+    from {
+    }
+    to {
+        border-radius: 30px;
+    }
+}
+
+@keyframes loginExit {
+    from {
+        border-radius: 30px;
+    }
+    to {
+        border-radius: unset;
+    }
+}
